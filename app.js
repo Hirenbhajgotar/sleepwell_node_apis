@@ -17,6 +17,8 @@ require('dotenv').config()
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postsRouter = require('./routes/posts');
+var categoryRouter = require('./routes/category');
+var subCategoryRouter = require('./routes/subCategory');
 var app = express();
 
 // view engine setup
@@ -36,6 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/posts', postsRouter);
+app.use('/category', categoryRouter);
+app.use('/sub-category', subCategoryRouter);
 
 //* mongoose DB connection
 mongoose.connect(
