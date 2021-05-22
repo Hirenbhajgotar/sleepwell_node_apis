@@ -26,7 +26,7 @@ router.get('/:categoryId', async (req, res, next) => {
 })
 
 // post category
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
     // validate
     const { error, value } = categoryValidation(req.body);
     if (error) return res.status(400).json(error.details[0].message);

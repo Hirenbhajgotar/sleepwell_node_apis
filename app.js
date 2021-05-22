@@ -12,6 +12,7 @@ var   logger       = require('morgan');
 const bodyParser   = require('body-parser');
 const mongoose     = require('mongoose');
 const cors         = require('cors');
+const fileUpload = require('express-fileupload');
 require('dotenv').config()
 
 var indexRouter = require('./routes/index');
@@ -19,6 +20,7 @@ var usersRouter = require('./routes/users');
 var postsRouter = require('./routes/posts');
 var categoryRouter = require('./routes/category');
 var subCategoryRouter = require('./routes/subCategory');
+var bannerRouter = require('./routes/banner');
 var app = express();
 
 // view engine setup
@@ -33,6 +35,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload());
 
 //* route middlewares
 app.use('/', indexRouter);
@@ -40,6 +43,9 @@ app.use('/user', usersRouter);
 app.use('/posts', postsRouter);
 app.use('/category', categoryRouter);
 app.use('/sub-category', subCategoryRouter);
+app.use('/banner', bannerRouter);
+
+
 
 //* mongoose DB connection
 mongoose.connect(
